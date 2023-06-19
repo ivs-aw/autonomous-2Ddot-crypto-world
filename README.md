@@ -6,9 +6,86 @@
 
 ## 概要About
 
+
+
 ## 対応した問題
 
+- MUD
+
+- ChainLink functions
+
+   Chainlink functions側の制約で実行時間(9000ms以内)およびデータ量の制約から最適なエンジニアリングになるように試行錯誤した点
+
 ## アプリケーションの起動方法
+
+- モジュールのインストール
+
+```bash
+pnpm install
+```
+
+- MUD 
+
+  - MUDコントラクトをローカルしてフロントを起動する方法
+
+    ```bash
+    pnpm run dev
+    ```
+- 投票App
+
+  - 投票Appをローカルで起動させる方法
+
+    ```bash
+    cd packages/vote-app && pnpm run start
+    ```
+
+  - 投票用のコントラクトをShibuyaにデプロイする方法
+
+    ```bash
+    cd pacakges/vote-app && pnpm run deploy:shibuya
+    ```
+
+- Chainlink 
+
+  ※ Chainlink functionについては現在ベータ版
+  であり、承認されたアドレスからしかコントラクトのデプロイや実行を受け付けていない状況。
+
+  - Chainlink functions用のコントラクトをコンパイルする方法
+
+    ```bash
+    npx hardhat compile
+    ```
+
+  - Chainlink functionsをローカルで実行させる方法
+
+    ```bash
+    npx hardhat functions-simulate
+    ```
+
+  - `FunctionsConsumer`コントラクトをデプロイする方法(検証無し)
+
+    ```bash
+    npx hardhat functions-deploy-client --network polygonMumbai --verify false
+    ```
+
+  - Configure your on-chain resources
+
+    ```bash
+    npx hardhat functions-sub-create --network polygonMumbai --amount 5 --contract 0xa9Bf293B85E46079665019BE17a67B8D925572f7
+    ```
+
+  - サンプル用のスクリプトをオンチェーンで実行させる場合
+
+    ```bash
+    npx hardhat functions-request --subid 1816 --contract 0xa9Bf293B85E46079665019BE17a67B8D925572f7 --network polygonMumbai
+    ```
+
+  - 自動で実行させるようにしたい場合
+
+    ```bash
+    npx hardhat functions-deploy-auto-client --network polygonMumbai --subid 1816 --interval 60 --configpath Functions-request-config.js
+    ```
+
 
 ## 使用した技術
 
@@ -30,10 +107,18 @@
 
 - soma
 
-- mashharuki
-  MUDとChainlink functionsの調査、Voting appの作成
+- mashharuki  
+  MUDとChainlink  
+  functionsの調査  
+  Voting appの作成  
 
 ## 学んだこと
+
+- ChainLink functionsの概要と使い方を学びました。これにより、任意のスマートコントラクトを自動で実行させることができるようになりました。
+
+- スマートコントラクト用フレームワークMUDの概要と使い方について学びました。
+
+- ChainLink functionsを使って任意のAPIの実行結果をスマートコントラクト越しに取得する方法を学びました。今回は、ここからOpenAIのAPIを呼び出して結果を取得するように設計しました。
 
 ## 次をどうするか?
 
