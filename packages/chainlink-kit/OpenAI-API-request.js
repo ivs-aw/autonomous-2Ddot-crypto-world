@@ -40,8 +40,26 @@ const body = JSON.stringify({
 // - timeout: maximum request duration in ms (optional, defaults to 10000ms)
 // - responseType: expected response type (optional, defaults to 'json')
 
-// Use multiple APIs & aggregate the results to enhance decentralization
-const openAiRequest = Functions.makeHttpRequest({
+
+// GET move info
+const moveRequest = Functions.makeHttpRequest({
+  url: `http://localhost:50091`,
+  headers: { 
+    'Content-Type': 'application/json',
+  },
+  method: "POST",
+  data: {
+    chainTables: [],
+    worldTables: [],
+    namespace: {
+      chainId: '80001',
+      worldAddress: '0x0b90377Db497D52F580896AC4Af8b4Bc2b7CFEd2',
+    },
+  }
+});
+
+// POST OpenAPI request
+const openAiRequest = Functions.makeHttpRequest(content,{
   url: `https://api.openai.com/v1/chat/completions`,
   headers: { 
     'Content-Type': 'application/json',
@@ -53,18 +71,19 @@ const openAiRequest = Functions.makeHttpRequest({
       {
         role: 'user',
         content: `
-          Please Generate an appropriate string of 50 characters.
+          ${content}
         `,
       },
     ],
     model: 'gpt-3.5-turbo',
   },
   timeout: 9000
-})
+});
 
-
+// get move info
+const moveRes = await moveRequest;
 // First, execute all the API requests are executed concurrently, then wait for the responses
-const res = await openAiRequest;
+const res = await openAiRequest(moveRes);
 
 var result;
 
