@@ -122,6 +122,8 @@ pnpm install
 
 ## 次をどうするか?
 
+現在は、WorldContractをデプロイした後に手動でマップ情報にあたるコントラクトをデプロイすることになっているので、今後の課題としてはChainlink FunctionもしくはChainlink Automationを使って自動でマップコントラクトの情報が更新される状態にする。また、この際出力されるマップコントラクトの情報はOpenAIのAPIを使って出力されるものを想定している。
+
 ## deployしたコントラクト
 
 [World コントラクト - Mumbai](https://mumbai.polygonscan.com/address/0x0b90377Db497D52F580896AC4Af8b4Bc2b7CFEd2)
