@@ -114,7 +114,7 @@ pnpm install
   MUDの調査  
   プロンプトエンジニアリング担当
 
-- soma
+- soma  
   MUD WorldコントラクトとPolygon Mumbai Networkの接続
 
 - mashharuki  
