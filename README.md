@@ -1,43 +1,56 @@
 # autonomous-2Ddot-crypto-world
-AI ✖︎ Cryptoハッカソン用のリポジトリです。
 
-## Mumbai Network へのデプロイ
+私たちはブロックチェーンとAIを活用した完全自律型のフルオンチェーンゲーム世界を作りました。
+プレイヤーの行動記録をチェーンに刻みAIがそれを基にゲーム世界と新たなユーザー体験を創出します。
+この基盤を用いた2Dドットオンチェーンゲームがautonomous-2Ddot-crypto-worldです。
 
-```bash
-cd packages/contracts && pnpm run deploy:mumbai
-```
+## 概要About
 
-## 秘密鍵に基づいているアドレス情報
+## 対応した問題
 
-[0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266](https://mumbai.polygonscan.com/address/0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266)
+## アプリケーションの起動方法
 
-## MODE を使って情報を取得する API リクエスト
+## 使用した技術
 
-- mumbai の場合
-
-```bash
-grpcurl -plaintext -d '{"chainTables": [], "worldTables": [], "namespace": {"chainId":"80001", "worldAddress": "0x0b90377Db497D52F580896AC4Af8b4Bc2b7CFEd2"}}' localhost:8545 mode.QueryLayer/StreamState
-```
-
-- local の場合
-
-```bash
-
-```
-
-## World コントラクト
-
-[0x2F9aD9440cBd077352aEBA8A6610E62a3F4d903B](https://mumbai.polygonscan.com/address/0x2F9aD9440cBd077352aEBA8A6610E62a3F4d903B)
-
-## 向き先を任意のブロックチェーンに変更するためのコマンド
-
-```bash
-cd packages/client
-pnpm vite
-```
+|No.|Name|
+|:----|:----|
+|1|MUD|
+|2|React|
+|3|pnpm|
+|4|hardhat|
+|5|OpenAI|
+|6|Chainlink functions|
+|7|Tailwind CSS|
+|8|Vite|
 
 
+## どのように作ったか(役割分担)
 
-### 参考文献
+- jhcoder
 
-1. [Using MODE](https://v2.mud.dev/mode)
+- soma
+
+- mashharuki
+  MUDとChainlink functionsの調査、Voting appの作成
+
+## 学んだこと
+
+## 次をどうするか?
+
+## deployしたコントラクト
+
+[World コントラクト - Mumbai](https://mumbai.polygonscan.com/address/0x0b90377Db497D52F580896AC4Af8b4Bc2b7CFEd2)
+
+[FunctionsConsumer.sol - Mumbai](https://mumbai.polygonscan.com/address/0x8F6631e30a2cF2Bd017595f3215F550f0613170Cå)
+
+[Voting コントラクト - Shibuya Network](https://shibuya.subscan.io/account/0xbfDe6e57dD7f54D496B896f6c7d551eE40d3BEB0)
+
+## Github repo
+
+[autonomous-2Ddot-crypto-world](https://github.com/ivs-aw/autonomous-2Ddot-crypto-world)
+
+## Live demo
+
+[autonomous-2Ddot-crypto-world - GihHub Pages](https://ivs-aw.github.io/autonomous-2Ddot-crypto-world/)
+
+[Voting App - Vercel](https://autonomous-2-ddot-crypto-world-rcrua2t0v-ivs-aw.vercel.app/)
