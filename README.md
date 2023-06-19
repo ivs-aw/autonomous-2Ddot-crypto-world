@@ -109,6 +109,7 @@ pnpm install
 - jhcoder
 
 - soma
+  MUD WorldコントラクトとPolygon Mumbai Networkの接続
 
 - mashharuki  
   MUDとChainlink  
@@ -122,6 +123,8 @@ pnpm install
 - スマートコントラクト用フレームワークMUDの概要と使い方について学びました。
 
 - ChainLink functionsを使って任意のAPIの実行結果をスマートコントラクト越しに取得する方法を学びました。今回は、ここからOpenAIのAPIを呼び出して結果を取得するように設計しました。
+
+- MUDのドキュメントや、コミュニティで質問から、フレームワークの意図や使い方を学びました。その中で、適したチェーンやアプリケーションの構成を理解しました。
 
 ## 次をどうするか?
 
