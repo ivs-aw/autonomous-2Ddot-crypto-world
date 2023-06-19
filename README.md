@@ -6,7 +6,9 @@
 
 ## 概要About
 
-
+私たちはブロックチェーンとAIを活用した完全自律型のフルオンチェーンゲーム世界を作りました。
+プレイヤーの行動記録をチェーンに刻みAIがそれを基にゲーム世界と新たなユーザー体験を創出します。
+この基盤を用いた2Dドットオンチェーンゲームがautonomous-2Ddot-crypto-worldです。
 
 ## 対応した問題
 
@@ -106,14 +108,20 @@ pnpm install
 
 ## どのように作ったか(役割分担)
 
-- jhcoder
+- jhcoder(チームリーダー)  
+  フロントエンド担当  
+  スライド＆デモ動画担当
+  MUDの調査  
+  プロンプトエンジニアリング担当
 
-- soma
+- soma  
+  バックエンド担当  
+  MUDコントラクトのMumbai対応担当  
 
 - mashharuki  
-  MUDとChainlink  
-  functionsの調査  
-  Voting appの作成  
+  バックエンド担当  
+  MUDとChainlink functionsの調査担当  
+  Voting app 担当
 
 ## 学んだこと
 
