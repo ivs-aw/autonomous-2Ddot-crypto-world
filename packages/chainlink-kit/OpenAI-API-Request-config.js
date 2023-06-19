@@ -30,7 +30,7 @@ const requestConfig = {
   codeLanguage: CodeLanguage.JavaScript,
   // String containing the source code to be executed
   // ここを実行したいJavaScriptに変える。
-  source: fs.readFileSync("./OpenAI-API-request-sample.js").toString(),
+  source: fs.readFileSync("./OpenAI-API-request.js").toString(),
   //source: fs.readFileSync('./API-request-example.js').toString(),
   // Secrets can be accessed within the source code with `secrets.varName` (ie: secrets.apiKey). The secrets object can only contain string values.
   secrets: { apiKey: process.env.OPENAI_API_KEY ?? "" },
