@@ -78,7 +78,7 @@ library Encounter {
   /** Get exists */
   function getExists(bytes32 player) internal view returns (bool exists) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     bytes memory _blob = StoreSwitch.getField(_tableId, _keyTuple, 0);
     return (_toBool(uint8(Bytes.slice1(_blob, 0))));
@@ -87,7 +87,7 @@ library Encounter {
   /** Get exists (using the specified store) */
   function getExists(IStore _store, bytes32 player) internal view returns (bool exists) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     bytes memory _blob = _store.getField(_tableId, _keyTuple, 0);
     return (_toBool(uint8(Bytes.slice1(_blob, 0))));
@@ -96,7 +96,7 @@ library Encounter {
   /** Set exists */
   function setExists(bytes32 player, bool exists) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     StoreSwitch.setField(_tableId, _keyTuple, 0, abi.encodePacked((exists)));
   }
@@ -104,7 +104,7 @@ library Encounter {
   /** Set exists (using the specified store) */
   function setExists(IStore _store, bytes32 player, bool exists) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     _store.setField(_tableId, _keyTuple, 0, abi.encodePacked((exists)));
   }
@@ -112,7 +112,7 @@ library Encounter {
   /** Get monster */
   function getMonster(bytes32 player) internal view returns (bytes32 monster) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     bytes memory _blob = StoreSwitch.getField(_tableId, _keyTuple, 1);
     return (Bytes.slice32(_blob, 0));
@@ -121,7 +121,7 @@ library Encounter {
   /** Get monster (using the specified store) */
   function getMonster(IStore _store, bytes32 player) internal view returns (bytes32 monster) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     bytes memory _blob = _store.getField(_tableId, _keyTuple, 1);
     return (Bytes.slice32(_blob, 0));
@@ -130,7 +130,7 @@ library Encounter {
   /** Set monster */
   function setMonster(bytes32 player, bytes32 monster) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     StoreSwitch.setField(_tableId, _keyTuple, 1, abi.encodePacked((monster)));
   }
@@ -138,7 +138,7 @@ library Encounter {
   /** Set monster (using the specified store) */
   function setMonster(IStore _store, bytes32 player, bytes32 monster) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     _store.setField(_tableId, _keyTuple, 1, abi.encodePacked((monster)));
   }
@@ -146,7 +146,7 @@ library Encounter {
   /** Get catchAttempts */
   function getCatchAttempts(bytes32 player) internal view returns (uint256 catchAttempts) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     bytes memory _blob = StoreSwitch.getField(_tableId, _keyTuple, 2);
     return (uint256(Bytes.slice32(_blob, 0)));
@@ -155,7 +155,7 @@ library Encounter {
   /** Get catchAttempts (using the specified store) */
   function getCatchAttempts(IStore _store, bytes32 player) internal view returns (uint256 catchAttempts) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     bytes memory _blob = _store.getField(_tableId, _keyTuple, 2);
     return (uint256(Bytes.slice32(_blob, 0)));
@@ -164,7 +164,7 @@ library Encounter {
   /** Set catchAttempts */
   function setCatchAttempts(bytes32 player, uint256 catchAttempts) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     StoreSwitch.setField(_tableId, _keyTuple, 2, abi.encodePacked((catchAttempts)));
   }
@@ -172,7 +172,7 @@ library Encounter {
   /** Set catchAttempts (using the specified store) */
   function setCatchAttempts(IStore _store, bytes32 player, uint256 catchAttempts) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     _store.setField(_tableId, _keyTuple, 2, abi.encodePacked((catchAttempts)));
   }
@@ -180,7 +180,7 @@ library Encounter {
   /** Get the full data */
   function get(bytes32 player) internal view returns (EncounterData memory _table) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     bytes memory _blob = StoreSwitch.getRecord(_tableId, _keyTuple, getSchema());
     return decode(_blob);
@@ -189,7 +189,7 @@ library Encounter {
   /** Get the full data (using the specified store) */
   function get(IStore _store, bytes32 player) internal view returns (EncounterData memory _table) {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     bytes memory _blob = _store.getRecord(_tableId, _keyTuple, getSchema());
     return decode(_blob);
@@ -200,7 +200,7 @@ library Encounter {
     bytes memory _data = encode(exists, monster, catchAttempts);
 
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     StoreSwitch.setRecord(_tableId, _keyTuple, _data);
   }
@@ -210,7 +210,7 @@ library Encounter {
     bytes memory _data = encode(exists, monster, catchAttempts);
 
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     _store.setRecord(_tableId, _keyTuple, _data);
   }
@@ -242,13 +242,13 @@ library Encounter {
   /** Encode keys as a bytes32 array using this table's schema */
   function encodeKeyTuple(bytes32 player) internal pure returns (bytes32[] memory _keyTuple) {
     _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
   }
 
   /* Delete all data for given keys */
   function deleteRecord(bytes32 player) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     StoreSwitch.deleteRecord(_tableId, _keyTuple);
   }
@@ -256,7 +256,7 @@ library Encounter {
   /* Delete all data for given keys (using the specified store) */
   function deleteRecord(IStore _store, bytes32 player) internal {
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((player));
+    _keyTuple[0] = player;
 
     _store.deleteRecord(_tableId, _keyTuple);
   }

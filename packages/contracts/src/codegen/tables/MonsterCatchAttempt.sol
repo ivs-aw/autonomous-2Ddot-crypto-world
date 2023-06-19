@@ -73,7 +73,7 @@ library MonsterCatchAttempt {
     bytes memory _data = encode(result);
 
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((encounter));
+    _keyTuple[0] = encounter;
 
     StoreSwitch.emitEphemeralRecord(_tableId, _keyTuple, _data);
   }
@@ -83,7 +83,7 @@ library MonsterCatchAttempt {
     bytes memory _data = encode(result);
 
     bytes32[] memory _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((encounter));
+    _keyTuple[0] = encounter;
 
     _store.emitEphemeralRecord(_tableId, _keyTuple, _data);
   }
@@ -96,6 +96,6 @@ library MonsterCatchAttempt {
   /** Encode keys as a bytes32 array using this table's schema */
   function encodeKeyTuple(bytes32 encounter) internal pure returns (bytes32[] memory _keyTuple) {
     _keyTuple = new bytes32[](1);
-    _keyTuple[0] = bytes32((encounter));
+    _keyTuple[0] = encounter;
   }
 }
