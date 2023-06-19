@@ -1,0 +1,23 @@
+{
+  "name": "dynamicnft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy:fuji": "npx hardhat run scripts/deploy.js --network fuji",
+    "deploy:mumbai": "npx hardhat run scripts/deploy.js --network mumbai",
+    "verify:fuji": "npx hardhat verify --network fuji 0x781BBC6B014c9f5055ad23f3CD5Fc5aa27039e2e"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@openzeppelin/contracts": "^4.6.0",
+    "dotenv": "^16.1.4",
+    "hardhat": "^2.15.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0"
+  }
+}

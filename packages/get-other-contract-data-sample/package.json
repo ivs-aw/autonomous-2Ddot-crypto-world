@@ -1,0 +1,22 @@
+{
+  "name": "get-other-contract-data-sample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy:mumbai": "npx hardhat run scripts/deploy.js --network mumbai",
+    "verify:mumbai": "npx hardhat verify --network mumbai 0x088599414e1E1fb2D8E093c88B0C53ae643FbE67 '60'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.2",
+    "dotenv": "^16.3.0",
+    "ethers": "^5.7.2",
+    "hardhat": "^2.15.0"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0"
+  }
+}
