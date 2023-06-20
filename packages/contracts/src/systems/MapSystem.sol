@@ -24,7 +24,7 @@ contract MapSystem is System {
     Movable.set(player, true);
     Encounterable.set(player, true);
   }
- 
+
   function move(uint32 x, uint32 y) public {
     bytes32 player = addressToEntityKey(_msgSender());
     require(Movable.get(player), "cannot move");
@@ -34,7 +34,7 @@ contract MapSystem is System {
     (uint32 fromX, uint32 fromY) = Position.get(player);
     require(distance(fromX, fromY, x, y) == 1, "can only move to adjacent spaces");
  
-    // Constrain position to map size, wrapping around if necessary
+    // マップサイズに位置を固定し、必要に応じて折り返す
     (uint32 width, uint32 height, ) = MapConfig.get();
     x = (x + width) % width;
     y = (y + height) % height;
@@ -46,9 +46,12 @@ contract MapSystem is System {
  
     if (Encounterable.get(player) && EncounterTrigger.get(position)) {
       uint256 rand = uint256(keccak256(abi.encode(player, position, blockhash(block.number - 1), block.difficulty)));
-      if (rand % 5 == 0) {
-        startEncounter(player);
-      }
+      // checkRandomAndStartEncounter(rand, player);
+      // memo: 以下の magicNumを小さくすれば遭遇率は上がり、magicNumを大きくすれば遭遇率は下がる
+        uint256 magicNum = 2;
+        if (rand % magicNum == 0) {
+           startEncounter(player);
+        }
     }
   }
  

@@ -1,7 +1,7 @@
 export enum MonsterType {
-  Eagle = 1,
-  Rat,
-  Caterpillar,
+  Leaffy = 1,
+  Firer,
+  Grekky,
 }
 
 type MonsterConfig = {
@@ -10,16 +10,16 @@ type MonsterConfig = {
 };
 
 export const monsterTypes: Record<MonsterType, MonsterConfig> = {
-  [MonsterType.Eagle]: {
-    name: "Eagle",
-    emoji: "🦅",
+  [MonsterType.Leaffy]: {
+    name: 'Leaffy',
+    emoji: 'assets/leaffy.png',
   },
-  [MonsterType.Rat]: {
-    name: "Rat",
-    emoji: "🐀",
+  [MonsterType.Firer]: {
+    name: 'Firer',
+    emoji: 'assets/firer.png',
   },
-  [MonsterType.Caterpillar]: {
-    name: "Caterpillar",
-    emoji: "🐛",
+  [MonsterType.Grekky]: {
+    name: 'Grekky',
+    emoji: 'assets/grekky.png',
   },
 };

@@ -1,37 +1,42 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       animation: {
-        battle: "battle 2s linear 1",
+        battle: 'battle 2s linear 1',
       },
+      backgroundImage: {
+        base: "url('assets/base.png')",
+        around: "url('assets/field-ground.png')",
+      },
+      background: {},
       keyframes: {
         battle: {
-          "0%": {
-            width: "200%",
-            height: "200%",
-            backgroundColor: "transparent",
+          '0%': {
+            width: '200%',
+            height: '200%',
+            backgroundColor: 'transparent',
           },
-          "8%": {
-            backgroundColor: "white",
+          '8%': {
+            backgroundColor: 'white',
           },
-          "16%": {
-            backgroundColor: "transparent",
+          '16%': {
+            backgroundColor: 'transparent',
           },
-          "24%": {
-            width: "200%",
-            height: "200%",
-            transform: "rotate(0deg)",
-            backgroundColor: "white",
+          '24%': {
+            width: '200%',
+            height: '200%',
+            transform: 'rotate(0deg)',
+            backgroundColor: 'white',
           },
-          "32%": {
-            backgroundColor: "transparent",
+          '32%': {
+            backgroundColor: 'transparent',
           },
-          "100%": {
+          '100%': {
             width: 0,
             height: 0,
-            transform: "rotate(360deg)",
+            transform: 'rotate(360deg)',
           },
         },
       },

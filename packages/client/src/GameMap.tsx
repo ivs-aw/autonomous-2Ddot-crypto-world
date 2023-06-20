@@ -1,7 +1,7 @@
-import { ReactNode, useEffect, useState } from "react";
-import { Entity } from "@latticexyz/recs";
-import { twMerge } from "tailwind-merge";
-import { useMUD } from "./MUDContext";
+import { ReactNode, useEffect, useState } from 'react';
+import { Entity } from '@latticexyz/recs';
+import { twMerge } from 'tailwind-merge';
+import { useMUD } from './MUDContext';
 
 type Props = {
   width: number;
@@ -45,7 +45,7 @@ export const GameMap = ({
   }, [encounter]);
 
   return (
-    <div className="inline-grid p-2 bg-lime-500 relative overflow-hidden">
+    <div className='inline-grid p-2 relative overflow-hidden bg-base w-[380] h-[380]'>
       {rows.map((y) =>
         columns.map((x) => {
           const terrainEmoji = terrain?.find(
@@ -61,8 +61,8 @@ export const GameMap = ({
             <div
               key={`${x},${y}`}
               className={twMerge(
-                "w-8 h-8 flex items-center justify-center",
-                onTileClick ? "cursor-pointer hover:ring" : null
+                'w-[6vw] h-[6vw] flex items-center justify-center',
+                onTileClick ? 'cursor-pointer hover:ring' : null
               )}
               style={{
                 gridColumn: x + 1,
@@ -74,24 +74,42 @@ export const GameMap = ({
             >
               {encounter && mainPlayerHere ? (
                 <div
-                  className="absolute z-10 animate-battle"
+                  className='absolute z-10 animate-battle black'
                   style={{
-                    boxShadow: "0 0 0 100vmax black",
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100vw',
+                    height: '100vh',
+                    boxShadow: '0 0 0 100vmax black',
                   }}
                   onAnimationEnd={() => {
                     setShowEncounter(true);
                   }}
                 ></div>
               ) : null}
-              <div className="flex flex-wrap gap-1 items-center justify-center relative">
+              <div className='flex flex-wrap gap-1 items-center justify-center relative'>
                 {terrainEmoji ? (
-                  <div className="absolute inset-0 flex items-center justify-center text-3xl pointer-events-none">
-                    {terrainEmoji}
+                  <div className='absolute inset-0 flex items-center justify-center text-3xl pointer-events-none'>
+                    {/* {terrainEmoji} is field object */}
+                    <img
+                      width='98'
+                      height='6vw'
+                      className='max-w-none h-[6vw] w-[6vw]'
+                      src={terrainEmoji}
+                    ></img>
                   </div>
                 ) : null}
-                <div className="relative">
+                <div className='relative'>
                   {playersHere?.map((p) => (
-                    <span key={p.entity}>{p.emoji}</span>
+                    <span key={p.entity}>
+                      <img
+                        width='5.5vw'
+                        height='5.5vw'
+                        className='max-w-none h-[5.2vw] w-[5.2vw]'
+                        src={p.emoji}
+                      ></img>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -100,9 +118,10 @@ export const GameMap = ({
         })
       )}
 
+      {/* encounter view */}
       {encounter && showEncounter ? (
         <div
-          className="relative z-10 -m-2 bg-black text-white flex items-center justify-center"
+          className='relative z-10 -m-2 bg-base text-white flex items-center justify-center w-[540px]'
           style={{
             gridColumnStart: 1,
             gridColumnEnd: width + 1,

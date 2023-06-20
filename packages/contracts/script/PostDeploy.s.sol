@@ -10,44 +10,51 @@ import { positionToEntityKey } from "../src/positionToEntityKey.sol";
  
 contract PostDeploy is Script {
   function run(address worldAddress) external {
-    console.log("Deployed world: ", worldAddress);
+    // console.log("Deployed world: ", worldAddress);
     IWorld world = IWorld(worldAddress);
  
     uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
     vm.startBroadcast(deployerPrivateKey);
  
     TerrainType O = TerrainType.None;
-    TerrainType T = TerrainType.TallGrass;
+    TerrainType G = TerrainType.Grass;
+    TerrainType T = TerrainType.Tree;
     TerrainType B = TerrainType.Boulder;
+    TerrainType H = TerrainType.HasItem;
 
     console.log("TerrainType defined");
- 
+
     TerrainType[5][5] memory map = [
-      [O, O, T, O, O],
-      [O, O, T, O, O],
-      [O, O, B, O, O],
-      [O, O, T, O, B],
-      [O, O, T, O, O]
-      // [O, O, T, O, O, O, O, O, T, O, O, O, O, B, O, O, O, O, O, O],
-      // [O, T, T, T, T, O, O, O, O, O, O, O, O, O, O, T, T, O, O, O],
-      // [O, O, T, T, T, T, O, O, O, O, B, O, O, O, O, O, T, O, O, O],
-      // [O, O, O, O, T, T, O, O, O, O, O, O, O, O, O, O, O, T, O, O],
-      // [O, O, O, B, B, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O],
-      // [O, T, O, O, O, B, B, O, O, O, O, T, O, O, O, O, O, B, O, O],
-      // [O, O, T, T, O, O, O, O, O, T, O, B, O, O, T, O, B, O, O, O],
-      // [O, O, T, O, O, O, O, T, T, T, O, B, B, O, O, O, O, O, O, O],
-      // [O, O, O, O, O, O, O, T, T, T, O, B, T, O, T, T, O, O, O, O],
-      // [O, B, O, O, O, B, O, O, T, T, O, B, O, O, T, T, O, O, O, O],
-      // [O, O, B, O, O, O, T, O, T, T, O, O, B, T, T, T, O, O, O, O],
-      // [O, O, B, B, O, O, O, O, T, O, O, O, B, O, T, O, O, O, O, O],
-      // [O, O, O, B, B, O, O, O, O, O, O, O, O, B, O, T, O, O, O, O],
-      // [O, O, O, O, B, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O],
-      // [O, O, O, O, O, O, O, O, O, O, B, B, O, O, T, O, O, O, O, O],
-      // [O, O, O, O, T, O, O, O, T, B, O, O, O, T, T, O, B, O, O, O],
-      // [O, O, O, T, O, T, T, T, O, O, O, O, O, T, O, O, O, O, O, O],
-      // [O, O, O, T, T, T, T, O, O, O, O, T, O, O, O, T, O, O, O, O],
-      // [O, O, O, O, O, T, O, O, O, O, O, O, O, O, O, O, O, O, O, O]
+      [G, B, B, O, G],
+      [H, O, O, G, O],
+      [O, O, O, O, O],
+      [T, O, O, H, O],
+      [G, B, O, O, O]
     ];
+    
+ 
+    // TerrainType[20][20] memory map = [
+    //   [O, O, O, O, O, O, T, O, O, O, O, O, O, O, O, O, O, O, O, O],
+    //   [O, O, T, O, O, O, O, O, T, O, O, O, O, B, O, O, O, O, O, O],
+    //   [O, T, T, T, T, O, O, O, O, O, O, O, O, O, O, T, T, O, O, O],
+    //   [O, O, T, T, T, T, O, O, O, O, B, O, O, O, O, O, T, O, O, O],
+    //   [O, O, O, O, T, T, O, O, O, O, O, O, O, O, O, O, O, T, O, O],
+    //   [O, O, O, B, B, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O],
+    //   [O, T, O, O, O, B, B, O, O, O, O, T, O, O, O, O, O, B, O, O],
+    //   [O, O, T, T, O, O, O, O, O, T, O, B, O, O, T, O, B, O, O, O],
+    //   [O, O, T, O, O, O, O, T, T, T, O, B, B, O, O, O, O, O, O, O],
+    //   [O, O, O, O, O, O, O, T, T, T, O, B, T, O, T, T, O, O, O, O],
+    //   [O, B, O, O, O, B, O, O, T, T, O, B, O, O, T, T, O, O, O, O],
+    //   [O, O, B, O, O, O, T, O, T, T, O, O, B, T, T, T, O, O, O, O],
+    //   [O, O, B, B, O, O, O, O, T, O, O, O, B, O, T, O, O, O, O, O],
+    //   [O, O, O, B, B, O, O, O, O, O, O, O, O, B, O, T, O, O, O, O],
+    //   [O, O, O, O, B, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O],
+    //   [O, O, O, O, O, O, O, O, O, O, B, B, O, O, T, O, O, O, O, O],
+    //   [O, O, O, O, T, O, O, O, T, B, O, O, O, T, T, O, B, O, O, O],
+    //   [O, O, O, T, O, T, T, T, O, O, O, O, O, T, O, O, O, O, O, O],
+    //   [O, O, O, T, T, T, T, O, O, O, O, T, O, O, O, T, O, O, O, O],
+    //   [O, O, O, O, O, T, O, O, O, O, O, O, O, O, O, O, O, O, O, O]
+    // ];
  
     uint32 height = uint32(map.length);
     uint32 width = uint32(map[0].length);
@@ -64,17 +71,21 @@ contract PostDeploy is Script {
         if (terrainType == TerrainType.Boulder) {
           Position.set(world, entity, x, y);
           Obstruction.set(world, entity, true);
-        } else if (terrainType == TerrainType.TallGrass) {
+        } else if (terrainType == TerrainType.Grass) {
+          Position.set(world, entity, x, y);
+          EncounterTrigger.set(world, entity, true);
+        } else if (terrainType == TerrainType.Tree) {
+          Position.set(world, entity, x, y);
+          EncounterTrigger.set(world, entity, true);
+        }
+        else if (terrainType == TerrainType.HasItem) {
           Position.set(world, entity, x, y);
           EncounterTrigger.set(world, entity, true);
         }
       }
     }
-    console.log("Terrain set");
  
     MapConfig.set(world, width, height, terrain);
-    
-    console.log("MapConfig set");
  
     vm.stopBroadcast();
   }
