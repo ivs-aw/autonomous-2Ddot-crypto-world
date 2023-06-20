@@ -7,8 +7,8 @@ module.exports = {
         battle: 'battle 2s linear 1',
       },
       backgroundImage: {
-        base: "url('assets/base.png')",
-        around: "url('assets/field-ground.png')",
+        base: "url('base.png')",
+        around: "url('field-ground.png')",
       },
       background: {},
       keyframes: {
