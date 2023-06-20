@@ -104,6 +104,12 @@ pnpm install
 | 8   | Tailwind CSS        |
 | 9   | Vite                |
 
+## 使用したブロックチェーン
+
+1. Mumbai Network (client)
+
+2. Shibuya Network (vote-app)
+
 ## どのように作ったか(役割分担)
 
 - jhcoder(チームリーダー)  
@@ -135,7 +141,7 @@ pnpm install
 
 現在は、WorldContract をデプロイした後に手動で World コントラクトをデプロイすることになっているので、今後の課題としては Chainlink Function もしくは Chainlink Automation を使って自動でマップコントラクトの情報が更新される状態にし、完全な自動化を目指す。また、この際 WorldContract を更新するコードは OpenAI の API を使って出力されるものを想定している。投票機能のフロントエンド組み込み。
 
-alchemyの無料枠を使用している為、レスポンス過多で、status code429が返り、起動が遅いですが有料プランに移行することで問題ない起動時間になる想定です。
+alchemy の無料枠を使用している為、レスポンス過多で、status code429 が返り、起動が遅いですが有料プランに移行することで問題ない起動時間になる想定です。
 
 ## deploy したコントラクト
 
