@@ -48,7 +48,7 @@ contract MapSystem is System {
       uint256 rand = uint256(keccak256(abi.encode(player, position, blockhash(block.number - 1), block.difficulty)));
       // checkRandomAndStartEncounter(rand, player);
       // memo: 以下の magicNumを小さくすれば遭遇率は上がり、magicNumを大きくすれば遭遇率は下がる
-        uint256 magicNum = 2;
+        uint256 magicNum = 5;
         if (rand % magicNum == 0) {
            startEncounter(player);
         }
