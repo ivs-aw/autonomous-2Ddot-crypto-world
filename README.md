@@ -1,25 +1,23 @@
 # autonomous-2Ddot-crypto-world
 
-私たちはブロックチェーンとAIを活用した完全自律型のフルオンチェーンゲーム世界を作りました。
-プレイヤーの行動記録をチェーンに刻みAIがそれを基にゲーム世界と新たなユーザー体験を創出します。
-この基盤を用いた2Dドットオンチェーンゲームがautonomous-2Ddot-crypto-worldです。
+<img width="1623" alt="スクリーンショット 2023-06-19 22 33 33" src="https://github.com/ivs-aw/autonomous-2Ddot-crypto-world/assets/29562675/1b514592-b513-4953-a261-a93853c191b1">
 
-## 概要About
+## 概要 About
 
-私たちはブロックチェーンとAIを活用した完全自律型のフルオンチェーンゲーム世界を作りました。
-プレイヤーの行動記録をチェーンに刻みAIがそれを基にゲーム世界と新たなユーザー体験を創出します。
-この基盤を用いた2Dドットオンチェーンゲームがautonomous-2Ddot-crypto-worldです。
+私たちはブロックチェーンと AI を活用した完全自律型のフルオンチェーンゲーム世界を作りました。
+プレイヤーの行動記録をチェーンに刻み AI がそれを基にゲーム世界と新たなユーザー体験を創出します。
+この基盤を用いた 2D ドットオンチェーンゲームが autonomous-2Ddot-crypto-world です。
 
 ## 対応した問題
 
 - MUD
 
-  デフォルトではLatticeの提供するテストネットで動作するようになっていたが、これをMumbaiネットワークに対応させるに苦労した。  
-  最初デプロイしようと考えていたマップは20×20であったがこれについては、デプロイが正常に終了しないため、5×5にするなどしてMumbaiネットワークでも動くように是正したことが苦労した点。適宜Latticeのチームに質問して意見をもらいながら開発を進めた。
+  デフォルトでは Lattice の提供するテストネットで動作するようになっていたが、これを Mumbai ネットワークに対応させるに苦労した。  
+  最初デプロイしようと考えていたマップは 20×20 であったがこれについては、デプロイが正常に終了しないため、処理できる最適なマップブロックを検討するなどして Mumbai ネットワークでも動くように是正したことが苦労した点。適宜 Lattice のチームに質問して意見をもらいながら開発を進めた。
 
 - ChainLink functions
 
-  Chainlink functions側の制約で実行時間(9000ms以内)およびデータ量の制約から最適なエンジニアリングになるように試行錯誤した点
+  Chainlink functions 側の制約で実行時間(9000ms 以内)およびデータ量の制約から最適なエンジニアリングになるように試行錯誤した点
 
 ## アプリケーションの起動方法
 
@@ -29,39 +27,40 @@
 pnpm install
 ```
 
-- MUD 
+- MUD
 
-  - MUDコントラクトをローカルしてフロントを起動する方法
+  - MUD コントラクトをローカルしてフロントを起動する方法
 
     ```bash
     pnpm run dev
     ```
-- 投票App
 
-  - 投票Appをローカルで起動させる方法
+- 投票 App
+
+  - 投票 App をローカルで起動させる方法
 
     ```bash
     cd packages/vote-app && pnpm run start
     ```
 
-  - 投票用のコントラクトをShibuyaにデプロイする方法
+  - 投票用のコントラクトを Shibuya にデプロイする方法
 
     ```bash
     cd pacakges/vote-app && pnpm run deploy:shibuya
     ```
 
-- Chainlink 
+- Chainlink
 
-  ※ Chainlink functionについては現在ベータ版
+  ※ Chainlink function については現在ベータ版
   であり、承認されたアドレスからしかコントラクトのデプロイや実行を受け付けていない状況。
 
-  - Chainlink functions用のコントラクトをコンパイルする方法
+  - Chainlink functions 用のコントラクトをコンパイルする方法
 
     ```bash
     npx hardhat compile
     ```
 
-  - Chainlink functionsをローカルで実行させる方法
+  - Chainlink functions をローカルで実行させる方法
 
     ```bash
     npx hardhat functions-simulate
@@ -91,52 +90,52 @@ pnpm install
     npx hardhat functions-deploy-auto-client --network polygonMumbai --subid 1816 --interval 60 --configpath Functions-request-config.js
     ```
 
-
 ## 使用した技術
 
-|No.|Name|
-|:----|:----|
-|1|MUD|
-|2|React|
-|3|pnpm|
-|4|hardhat|
-|5|OpenAI|
-|6|Chainlink functions|
-|7|Tailwind CSS|
-|8|Vite|
-
+| No. | Name                |
+| :-- | :------------------ |
+| 1   | MUD                 |
+| 2   | MODE                |
+| 3   | React               |
+| 4   | pnpm                |
+| 5   | hardhat             |
+| 6   | OpenAI              |
+| 7   | Chainlink functions |
+| 8   | Tailwind CSS        |
+| 9   | Vite                |
 
 ## どのように作ったか(役割分担)
 
 - jhcoder(チームリーダー)  
-  フロントエンド担当  
+  フロントエンド
+  バックエンド
   スライド＆デモ動画担当
-  MUDの調査  
-  プロンプトエンジニアリング担当
+  MUD World コントラクト, MODE の調査
+  プロンプトエンジニアリング
 
 - soma  
-  MUD WorldコントラクトとPolygon Mumbai Networkの接続
+  MUD World コントラクトと Polygon Mumbai Network の接続
 
 - mashharuki  
   バックエンド担当  
-  MUDとChainlink functionsの調査担当  
+  MUD と Chainlink functions の調査担当  
   Voting app 担当
 
 ## 学んだこと
 
-- ChainLink functionsの概要と使い方を学びました。これにより、任意のスマートコントラクトを自動で実行させることができるようになりました。
+- ChainLink functions の概要と使い方を学びました。これにより、任意のスマートコントラクトを自動で実行させることができるようになりました。
 
-- スマートコントラクト用フレームワークMUDの概要と使い方について学びました。
+- スマートコントラクト用フレームワーク MUD の概要と使い方について学びました。
 
-- ChainLink functionsを使って任意のAPIの実行結果をスマートコントラクト越しに取得する方法を学びました。今回は、ここからOpenAIのAPIを呼び出して結果を取得するように設計しました。
+- ChainLink functions を使って任意の API の実行結果をスマートコントラクト越しに取得する方法を学びました。今回は、ここから OpenAI の API を呼び出して結果を取得するように設計しました。
 
-- MUDのドキュメントや、コミュニティで質問から、フレームワークの意図や使い方を学びました。その中で、適したチェーンやアプリケーションの構成を理解しました。
+- MUD のドキュメントや、コミュニティで質問から、フレームワークの意図や使い方を学びました。その中で、適したチェーンやアプリケーションの構成を理解しました。
 
 ## 次をどうするか?
 
-現在は、WorldContractをデプロイした後に手動でマップ情報にあたるコントラクトをデプロイすることになっているので、今後の課題としてはChainlink FunctionもしくはChainlink Automationを使って自動でマップコントラクトの情報が更新される状態にする。また、この際出力されるマップコントラクトの情報はOpenAIのAPIを使って出力されるものを想定している。
+現在は、WorldContract をデプロイした後に手動で World コントラクトをデプロイすることになっているので、今後の課題としては Chainlink Function もしくは Chainlink Automation を使って自動でマップコントラクトの情報が更新される状態にし、完全な自動化を目指す。また、この際 WorldContract を更新するコードは OpenAI の API を使って出力されるものを想定している。投票機能のフロントエンド組み込み。
 
-## deployしたコントラクト
+## deploy したコントラクト
 
 [World コントラクト - Mumbai](https://mumbai.polygonscan.com/address/0x0b90377Db497D52F580896AC4Af8b4Bc2b7CFEd2)
 
