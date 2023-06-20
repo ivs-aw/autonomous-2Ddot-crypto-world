@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
-import { toast } from "react-toastify";
-import { useMUD } from "./MUDContext";
-import { MonsterCatchResult } from "./monsterCatchResult";
+import { useEffect, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
+import { toast } from 'react-toastify';
+import { useMUD } from './MUDContext';
+import { MonsterCatchResult } from './monsterCatchResult';
+import './styles/index.css';
 
 type Props = {
   monsterName: string;
@@ -24,32 +25,44 @@ export const EncounterScreen = ({ monsterName, monsterEmoji }: Props) => {
   return (
     <div
       className={twMerge(
-        "flex flex-col gap-10 items-center justify-center bg-black text-white transition-opacity duration-1000",
-        appear ? "opacity-100" : "opacity-0"
+        'flex flex-col gap-10 items-center justify-center text-white transition-opacity duration-1000 w-[500px]',
+        appear ? 'opacity-100' : 'opacity-0'
       )}
     >
-      <div className="text-8xl animate-bounce">{monsterEmoji}</div>
-      <div>A wild {monsterName} appears!</div>
+      <div className='text-8xl animate-bounce'>
+        <img
+          width='98'
+          height='98'
+          className='max-w-none h-[98px]'
+          src={monsterEmoji}
+        ></img>
+      </div>
+      {/* memo:  メッセージウインド */}
+      <div className='textboard'>
+        <p className='encounter-text'>
+          あ、野生の {monsterName} があらわれた！
+        </p>
+      </div>
 
-      <div className="flex gap-2">
+      <div className='flex gap-2'>
         <button
-          type="button"
-          className="bg-stone-600 hover:ring rounded-lg px-4 py-2"
+          type='button'
+          className='bg-stone-600 hover:ring rounded-lg px-4 py-2'
           onClick={async () => {
-            const toastId = toast.loading("Throwing emojiball…");
+            const toastId = toast.loading('Throwing emojiball…');
             const result = await throwBall();
             if (result === MonsterCatchResult.Caught) {
               toast.update(toastId, {
                 isLoading: false,
-                type: "success",
-                render: `You caught the ${monsterName}!`,
+                type: 'success',
+                render: `${monsterName} を捕まえたぞ！`,
                 autoClose: 5000,
                 closeButton: true,
               });
             } else if (result === MonsterCatchResult.Fled) {
               toast.update(toastId, {
                 isLoading: false,
-                type: "default",
+                type: 'default',
                 render: `Oh no, the ${monsterName} fled!`,
                 autoClose: 5000,
                 closeButton: true,
@@ -57,8 +70,8 @@ export const EncounterScreen = ({ monsterName, monsterEmoji }: Props) => {
             } else if (result === MonsterCatchResult.Missed) {
               toast.update(toastId, {
                 isLoading: false,
-                type: "error",
-                render: "You missed!",
+                type: 'error',
+                render: '捕獲に失敗した💦',
                 autoClose: 5000,
                 closeButton: true,
               });
@@ -69,24 +82,24 @@ export const EncounterScreen = ({ monsterName, monsterEmoji }: Props) => {
             }
           }}
         >
-          ☄️ Throw
+          ☄️ 捕獲する
         </button>
         <button
-          type="button"
-          className="bg-stone-800 hover:ring rounded-lg px-4 py-2"
+          type='button'
+          className='bg-stone-800 hover:ring rounded-lg px-4 py-2'
           onClick={async () => {
-            const toastId = toast.loading("Running away…");
+            const toastId = toast.loading('Running away…');
             await fleeEncounter();
             toast.update(toastId, {
               isLoading: false,
-              type: "default",
-              render: `You ran away!`,
+              type: 'default',
+              render: `上手く逃げれた！`,
               autoClose: 5000,
               closeButton: true,
             });
           }}
         >
-          🏃‍♂️ Run
+          🏃‍♂️ 逃げる
         </button>
       </div>
     </div>

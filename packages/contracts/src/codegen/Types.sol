@@ -10,13 +10,15 @@ enum MonsterCatchResult {
 
 enum MonsterType {
   None,
-  Eagle,
-  Rat,
-  Caterpillar
+  Leaffy,
+  Firer,
+  Grekky
 }
 
 enum TerrainType {
   None,
-  TallGrass,
-  Boulder
+  Grass,
+  Tree,
+  Boulder,
+  HasItem
 }

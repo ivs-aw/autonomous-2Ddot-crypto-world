@@ -1,9 +1,6 @@
 // This example shows how to make a response using OoenAI API
 
-if (
-  secrets.apiKey == "" ||
-  secrets.apiKey === "Your OpenAI API key (get a free one: https://platform.openai.com/)"
-) {
+if (secrets.apiKey == "" || secrets.apiKey === "Your OpenAI API key (get a free one: https://platform.openai.com/)") {
   throw Error(
     "OPENAI _API_KEY environment variable not set for OpenAI API.  Get a free key from https://platform.openai.com/"
   )
@@ -12,7 +9,7 @@ if (
 // request message
 const messages = [
   {
-    role: 'user',
+    role: "user",
     content: `
       入力に書かれたsolidityのコードを生成してください。
 
@@ -22,13 +19,13 @@ const messages = [
       #出力
     `,
   },
-];
+]
 
 // request body data
 const body = JSON.stringify({
   messages,
-  model: 'gpt-3.5-turbo',
-});
+  model: "gpt-3.5-turbo",
+})
 
 // To make an HTTP request, use the Functions.makeHttpRequest function
 // Functions.makeHttpRequest function parameters:
@@ -40,63 +37,80 @@ const body = JSON.stringify({
 // - timeout: maximum request duration in ms (optional, defaults to 10000ms)
 // - responseType: expected response type (optional, defaults to 'json')
 
-
 // GET move info
 const moveRequest = Functions.makeHttpRequest({
   url: `http://localhost:50091`,
-  headers: { 
-    'Content-Type': 'application/json',
+  headers: {
+    "Content-Type": "application/json",
   },
   method: "POST",
   data: {
     chainTables: [],
     worldTables: [],
     namespace: {
-      chainId: '80001',
-      worldAddress: '0x0b90377Db497D52F580896AC4Af8b4Bc2b7CFEd2',
+      chainId: "80001",
+      worldAddress: "0x0b90377Db497D52F580896AC4Af8b4Bc2b7CFEd2",
     },
-  }
-});
+  },
+})
+
+// TODO: fix MODE
+const block = moveRequest.tables.OwnedBy.result
+
+const content = `
+入力に書かれたsolidityのコードを生成してください。
+
+#入力
+全体数4の内の${block}について、捕獲率は多いですか？少ないですか？
+多い場合は${block}よりも大きいランダムな数字を、小さい場合は${block}よりも小さいランダムな数字を
+以下のコードの「magicNum」にその数字を代入し、以下の形式でコードを書いてください。
+ 
+uint256 rand = uint256(keccak256(abi.encode(player, position, blockhash(block.number - 1), block.difficulty)));
+        if (rand % magicNum == 0) {
+           startEncounter(player);
+        }
+
+#出力`
 
 // POST OpenAPI request
-const openAiRequest = Functions.makeHttpRequest(content,{
+const openAiRequest = Functions.makeHttpRequest(content, {
   url: `https://api.openai.com/v1/chat/completions`,
-  headers: { 
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${ secrets.apiKey }`,
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${secrets.apiKey}`,
   },
   method: "POST",
   data: {
-    'messages': [
+    messages: [
       {
-        role: 'user',
+        role: "user",
         content: `
           ${content}
         `,
       },
     ],
-    model: 'gpt-3.5-turbo',
+    model: "gpt-3.5-turbo",
   },
-  timeout: 9000
-});
+  timeout: 9000,
+})
 
 // get move info
-const moveRes = await moveRequest;
+const moveRes = await moveRequest
 // First, execute all the API requests are executed concurrently, then wait for the responses
-const res = await openAiRequest(moveRes);
+const res = await openAiRequest(moveRes)
 
-var result;
+var result
 
 if (!res.error) {
-  console.log("API Call Success!!");
+  console.log("API Call Success!!")
   //console.log("data:", res);
 
   data = JSON.parse(JSON.stringify(res))
   // console.log("data:", data)
   // console.log("choices data:", JSON.stringify(data.data.choices[0]))
-  result = data.data.choices[0].message.content;
+  result = data.data.choices[0].message.content
 } else {
-  console.log("OpenAI API call Error");
+  console.log("OpenAI API call Error")
   console.error("error", res)
 }
 
