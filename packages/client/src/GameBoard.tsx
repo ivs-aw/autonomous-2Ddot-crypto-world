@@ -30,6 +30,7 @@ export const GameBoard = () => {
   });
 
   const mapConfig = useComponentValue(MapConfig, singletonEntity);
+  console.log('mapConfig::', mapConfig);
   if (mapConfig == null) {
     throw new Error(
       'map config not set or not ready, only use this hook after loading state === LIVE'

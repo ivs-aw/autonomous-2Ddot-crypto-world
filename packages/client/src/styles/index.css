@@ -1,0 +1,57 @@
+.textboard {
+  width: 100%;
+  height: 120px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 5px;
+  box-shadow: 0 0 0 4px #fff inset;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* 開始地点の指定 */
+@keyframes ozDq {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes ozDq {
+  from {
+    width: 0;
+  }
+}
+
+/* 透明度の指定 */
+@keyframes ozPulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes ozPulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.encounter-text {
+  width: 96%;
+  margin: 2%;
+  white-space: pre;
+  overflow: hidden;
+  animation: ozDq 3s steps(70, end);
+  /* プロパティは順に name, duration, timing-function です */
+}
+.encounter-text:after {
+  content: '▶';
+  animation: ozPulse 1s infinite ease;
+  /* プロパティは順に name, duration, iteration-count, timing-function です */
+}
