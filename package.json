@@ -10,7 +10,8 @@
     "initialize": "pnpm recursive run initialize",
     "mud:up": "pnpm recursive exec mud set-version -v canary && pnpm install",
     "prepare": "(forge --version || pnpm foundry:up)",
-    "test": "pnpm recursive run test"
+    "test": "pnpm recursive run test",
+    "erc-4337-example": "pnpm -F \"erc-4337-example\""
   },
   "devDependencies": {
     "@latticexyz/cli": "2.0.0-alpha.1.177",
