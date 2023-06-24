@@ -29,10 +29,15 @@ pnpm install
 
 - MUD
 
-  - MUD コントラクトをローカルしてフロントを起動する方法
+  - MUD コントラクトをローカルで初期化しフロントを起動する方法
 
     ```bash
     pnpm run dev
+    ```
+  - Mumbaiにデプロイしてあるコントラクトと連動してフロントを起動する場合
+
+    ```bash
+    cd packages/client && pnpm run vite
     ```
 
 - 投票 App

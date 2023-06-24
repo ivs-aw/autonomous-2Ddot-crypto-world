@@ -12,6 +12,7 @@
     "deploy:fuji": "pnpm run initialize && mud deploy --profile=fuji",
     "deploy:intmax": "pnpm run initialize && mud deploy --profile=intmax",
     "deploy:opgoerli": "pnpm run initialize && mud deploy --profile=opgoerli",
+    "deploy:arbgoerli": "pnpm run initialize && mud deploy --profile=arbgoerli",
     "dev": "pnpm mud dev-contracts --tsgenOutput ../client/src/mud",
     "initialize": "pnpm run tablegen && pnpm run worldgen && pnpm run build && pnpm run worldtypes && pnpm run tsgen",
     "lint": "pnpm run prettier && pnpm run solhint",
