@@ -32,3 +32,5 @@ eth_rpc_url = "https://prealpha.testnet.intmax.io/"
 eth_rpc_url = "https://goerli.optimism.io"
 [profile.arbgoerli]
 eth_rpc_url = "https://goerli-rollup.arbitrum.io/rpc"
+[profile.sandverse]
+eth_rpc_url = "https://rpc.sandverse.oasys.games"
