@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(rootElement);
 // TODO: figure out if we actually want this to be async or if we should render something else in the meantime
 setup().then((result) => {
   root.render(
-    <WalletConnection>
+    <WalletConnection value={result}>
       <MUDProvider value={result}>
         <App />
         <ToastContainer position="bottom-right" draggable={false} theme="dark" />

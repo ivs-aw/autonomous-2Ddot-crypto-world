@@ -1,4 +1,6 @@
 import React, { ReactNode, createContext, useState } from "react";
+import { ethers } from "ethers";
+import { SetupResult } from "../../mud/setup";
 
 let injectedProvider = false;
 
@@ -8,6 +10,7 @@ if (typeof window.ethereum !== 'undefined') {
 
 type Props = {
   children: ReactNode;
+  value: SetupResult;
 };
 
 const isMetaMask = injectedProvider ? window.ethereum.isMetaMask : false;
@@ -21,9 +24,10 @@ export const walletContext = createContext<any | null>(null);
  * @param param0 
  * @returns 
  */
-const WalletConnection = ({children}: Props, ) => {
+const WalletConnection = ({children, value}: Props, ) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [wallet, setWallet] = useState({accounts:[]});
+  const [accounts, setAccounts] = useState([]);
 
   const open = Boolean(anchorEl);
 
@@ -43,6 +47,7 @@ const WalletConnection = ({children}: Props, ) => {
       method: "eth_requestAccounts",
     });
     updateWallet(accounts);
+    setAccounts(accounts);
   }
 
   /**
@@ -55,6 +60,27 @@ const WalletConnection = ({children}: Props, ) => {
     })
     updateWallet([])
     setAnchorEl(null);
+  }
+
+  /**
+   * handleDeposit method
+   */
+  const handleDeposit = async () => {
+    await window.ethereum.request({
+      method: 'eth_sendTransaction',
+      params: [
+        {
+          from: accounts[0], // The user's active address.
+          to: value.network.worldContract.address,
+          value: ethers.utils.parseEther("0.0001").toString(),
+          gasLimit: '0x5028', 
+          maxPriorityFeePerGas: '0x3b9aca00', 
+          maxFeePerGas: '0x2540be400', 
+        },
+      ],
+    })
+    .then((txHash: any) => console.log("txHash:", txHash))
+    .catch((error: any) => console.error("error:", error));
   }
 
   /**
@@ -80,16 +106,25 @@ const WalletConnection = ({children}: Props, ) => {
             Autonomous-2Ddot-Crypto-World
           </h6>
           {wallet.accounts.length > 0 ? (
-            <button
-              className="border rounded p-2"
-              id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-            >
-              {wallet.accounts[0]?.slice(0, 5)}...{wallet.accounts[0]?.slice(-5)}
-            </button>
+            <p>
+              <button
+                className="border rounded p-2"
+                id="basic-button"
+                aria-controls={open ? "basic-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? "true" : undefined}
+                onClick={handleClick}
+              >
+                {wallet.accounts[0]?.slice(0, 5)}...{wallet.accounts[0]?.slice(-5)}
+              </button>
+              <button
+                className="border rounded p-2 bg-green-600"
+                id="basic-button2"
+                onClick={handleDeposit}
+              >
+                Deposit
+              </button>
+            </p>
           ) : (
             <button
               className="border rounded p-2 flex"
