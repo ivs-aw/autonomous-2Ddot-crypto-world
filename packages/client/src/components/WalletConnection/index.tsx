@@ -66,6 +66,9 @@ const WalletConnection = ({children, value}: Props, ) => {
    * handleDeposit method
    */
   const handleDeposit = async () => {
+    // if chainID not equal '31337' change to '31337'
+    await switchNetwork();
+
     await window.ethereum.request({
       method: 'eth_sendTransaction',
       params: [
@@ -81,6 +84,45 @@ const WalletConnection = ({children, value}: Props, ) => {
     })
     .then((txHash: any) => console.log("txHash:", txHash))
     .catch((error: any) => console.error("error:", error));
+  }
+
+  /**
+   * switchNetwork method
+   */
+  const switchNetwork = async () => {
+    try {
+      // Mumbai testnet に切り替えます。
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: '0x1092' }], 
+      });
+    } catch (error: any) {
+      // このエラーコードは当該チェーンがメタマスクに追加されていない場合です。
+      // その場合、ユーザーに追加するよう促します。
+      if (error.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: '0x1092',
+                chainName: 'Lattice Test Network',
+                rpcUrls: ['https://follower.testnet-chain.linfra.xyz'],
+                nativeCurrency: {
+                    name: "NEXI",
+                    symbol: "NEXI",
+                    decimals: 18
+                },
+                blockExplorerUrls: ['https://explorer.testnet-chain.linfra.xyz/']
+              },
+            ],
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      console.log(error);
+    }
   }
 
   /**
