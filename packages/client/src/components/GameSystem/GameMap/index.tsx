@@ -1,7 +1,7 @@
-import { ReactNode, useEffect, useState } from 'react';
 import { Entity } from '@latticexyz/recs';
+import { ReactNode, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
-import { useMUD } from './MUDContext';
+import { useMUD } from './../../../context/MUDContext';
 
 type Props = {
   width: number;
@@ -21,6 +21,11 @@ type Props = {
   encounter?: ReactNode;
 };
 
+/**
+ * GameMap Component
+ * @param param0 
+ * @returns 
+ */
 export const GameMap = ({
   width,
   height,

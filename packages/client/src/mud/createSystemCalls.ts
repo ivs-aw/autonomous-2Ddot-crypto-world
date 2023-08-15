@@ -1,6 +1,6 @@
 import { Has, HasValue, getComponentValue, runQuery } from "@latticexyz/recs";
-import { uuid, awaitStreamValue } from "@latticexyz/utils";
-import { MonsterCatchResult } from "../monsterCatchResult";
+import { awaitStreamValue, uuid } from "@latticexyz/utils";
+import { MonsterCatchResult } from "../utils/monsterCatchResult";
 import { ClientComponents } from "./createClientComponents";
 import { SetupNetworkResult } from "./setupNetwork";
  

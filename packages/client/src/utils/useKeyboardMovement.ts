@@ -1,6 +1,9 @@
 import { useEffect } from "react";
-import { useMUD } from "./MUDContext";
+import { useMUD } from "../context/MUDContext";
 
+/**
+ * useKeyboardMovement method
+ */
 export const useKeyboardMovement = () => {
   const {
     systemCalls: { moveBy },

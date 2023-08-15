@@ -5,8 +5,8 @@ import { mount as mountDevTools } from "@latticexyz/dev-tools";
 import ReactDOM from "react-dom/client";
 import { ToastContainer } from "react-toastify";
 import { App } from "./App";
-import { MUDProvider } from "./MUDContext";
 import WalletConnection from './components/WalletConnection';
+import { MUDProvider } from "./context/MUDContext";
 import { setup } from "./mud/setup";
 
 const rootElement = document.getElementById("react-root");

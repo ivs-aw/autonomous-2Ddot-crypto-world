@@ -1,13 +1,17 @@
 import { useComponentValue, useEntityQuery } from '@latticexyz/react';
-import { GameMap } from './GameMap';
-import { useMUD } from './MUDContext';
-import { useKeyboardMovement } from './useKeyboardMovement';
-import { hexToArray } from '@latticexyz/utils';
-import { TerrainType, terrainTypes } from './terrainTypes';
-import { EncounterScreen } from './EncounterScreen';
 import { Entity, Has, getComponentValueStrict } from '@latticexyz/recs';
-import { MonsterType, monsterTypes } from './monsterTypes';
+import { hexToArray } from '@latticexyz/utils';
+import { useMUD } from '../../../context/MUDContext';
+import { MonsterType, monsterTypes } from '../../../utils/monsterTypes';
+import { TerrainType, terrainTypes } from '../../../utils/terrainTypes';
+import { useKeyboardMovement } from '../../../utils/useKeyboardMovement';
+import { EncounterScreen } from './../EncounterScreen';
+import { GameMap } from './../GameMap';
 
+/**
+ * GameBoard Component
+ * @returns 
+ */
 export const GameBoard = () => {
   useKeyboardMovement();
 
