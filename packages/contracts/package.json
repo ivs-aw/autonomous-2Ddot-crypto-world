@@ -14,6 +14,7 @@
     "deploy:opgoerli": "pnpm run initialize && mud deploy --profile=opgoerli",
     "deploy:arbgoerli": "pnpm run initialize && mud deploy --profile=arbgoerli",
     "deploy:sandverse": "pnpm run initialize && mud deploy --profile=sandverse",
+    "deploy:zKatana": "pnpm run initialize && mud deploy --profile=zKatana",
     "dev": "pnpm mud dev-contracts --tsgenOutput ../client/src/mud",
     "initialize": "pnpm run tablegen && pnpm run worldgen && pnpm run build && pnpm run worldtypes && pnpm run tsgen",
     "lint": "pnpm run prettier && pnpm run solhint",
